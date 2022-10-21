@@ -1,0 +1,34 @@
+/* 오디오 플레이어 CSS */
+
+.bgm-wrap {position: absolute;z-index: 9998; top:145px; left:430px; height:100px}
+.bgm-wrap iframe#youtube-player {display:none}
+.bgm-wrap .audio-box {width: 337px;height: 55px;background: #efefef; padding:5px 15px;margin:15px;border-radius: 15px; color: gray;border: solid 0.5px #ddd}
+.bgm-wrap .audio-box .text-play-click {margin-top: 10px;}
+.bgm-wrap .audio-title-wrap {margin-bottom: 5px;margin-top: 3px;font-size: 13px;font-weight: 500;color: #999;}
+.bgm-wrap .audio-box .audio-control-btn{display: inline-block;font-size: 14px}
+.bgm-wrap .audio-box .audio-control-btn.btn-play {width:12px; margin-right: 5px;cursor:pointer;}
+.bgm-wrap .audio-box .audio-control-btn.btn-pause {width:12px; margin-right: 5px;cursor:pointer;}
+.bgm-wrap .play-time {display: inline-block; margin: 4px;}
+.bgm-wrap .audio-box .play-progress-box{display: inline-block;font-size: 14px;background: #fff;width:120px;height: 4px;border: solid 0.5px #ddd;vertical-align: middle}
+.bgm-wrap .audio-box .play-progress-bar{width:0;height: 100%;background: gray;}
+.bgm-wrap .audio-box .play-volume-box{display: inline-block;margin-left: 15px;}
+.bgm-wrap .audio-box .play-volume-slider{display:inline-block;width: 40px;height:4px;vertical-align: middle;margin-left: 5px;}
+.bgm-wrap .audio-box .play-volume-slider .ui-slider-handle.ui-state-active{border: 1px solid #c5c5c5;background: gray;}
+.bgm-wrap .audio-box .play-volume-slider .ui-slider-handle{width: 10px; height:10px; border-radius: 15px}
+.bgm-wrap .block_tool{position: absolute;top:-50px; width: auto}
+.bgm-wrap .block_tool div{margin-bottom: 0;}
+.bgm-wrap .block_tool div .block_copy{margin-right: 10px; margin-left: 10px}
+.bgm-wrap .block_tool div{display:inline-block;margin-bottom: 10px;width: 40px;height: 40px;text-align: center;border-radius: 50%;background: #F1F1F1 no-repeat center;box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.05);cursor: pointer;}
+
+.bgm-wrap .block_tool .audio_url p{position: absolute;left: -15px;top: 48px;padding: 0 10px;height: 40px;border-radius: 8px;line-height: 40px;text-align: center;background: #656868;color: #FFF;}
+.bgm-wrap .block_tool .audio_list p{position: absolute;left: 36px;top: 48px;padding: 0 10px;height: 40px;border-radius: 8px;line-height: 40px;text-align: center;background: #656868;color: #FFF;}
+.bgm-wrap .block_tool .audio_remove p{position: absolute;left: 83px;top: 48px;padding: 0 10px;height: 40px;border-radius: 8px;line-height: 40px;text-align: center;background: #656868;color: #FFF;width: 70px;}
+.bgm-wrap .block_tool div p:after{content: "";clear: both;display: block;position: absolute;top: -8px;width: 40px;height: 10px; left:0; background: url(../images/section/section-tool-bg.png) no-repeat right center;}
+
+.bgm-wrap .block_tool div:hover{background-color: #EB479A}
+.bgm-wrap .block_tool .audio_url{background-image: url(../images/block/list-icon.png) !important;}
+.bgm-wrap .block_tool .audio_url:hover{background-image:url(../images/block/list-icon-over.png) !important;}
+.bgm-wrap .block_tool .audio_list{background-image: url(../images/block/desktop-icon.png); margin-right: 10px;margin-left: 10px !important;}
+.bgm-wrap .block_tool .audio_list:hover{background-image:url(../images/block/desktop-icon-over.png) !important;}
+.bgm-wrap .block_tool .audio_remove{background-image: url(../images/block/remove.png) !important;}
+.bgm-wrap .block_tool .audio_remove:hover{background-image:url(../images/block/remove-over.png) !important;}
