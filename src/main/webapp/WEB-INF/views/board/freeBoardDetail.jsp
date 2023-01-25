@@ -11,12 +11,6 @@
         <meta name="generator" content="Hugo 0.101.0">
         <title>CoinRich(비트 가격 넣기)</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-              crossorigin="anonymous">
-
         <!-- Custom styles for this template -->
         <link href="/css/cover.css" rel="stylesheet">
     </head>
@@ -28,109 +22,198 @@
         </jsp:include>
 
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand text-light fw-bold fs-3" href="#">자유게시판</a>
-                <button class="btn btn-dark btn-outline-light" onclick="location.href='/free-board/form'">글쓰기</button>
+            <a class="navbar-brand text-light fw-bold fs-2" href="#">자유게시판</a>
+            <div class="container-fluid justify-content-end">
+                <button class="btn btn-dark btn-outline-light ms-1" onclick="location.href='/free-board/form'">글쓰기</button>
+                <button type="button" class="btn btn-dark btn-outline-light ms-1" data-bs-toggle="modal" data-bs-target="#freeBoardUpdate">수정</button>
+                <button type="button" class="btn btn-dark btn-outline-light ms-1" data-bs-toggle="modal" data-bs-target="#freeBoardDelete">삭제</button>
             </div>
         </nav>
 
         <div class="mb-3 align-content-sm-start">
-            <p class="fw-bold h2">${freeBoard.title}</p>
-            <p>${freeBoard.writer} |
-                <javatime:format pattern="yyyy-MM-dd hh:mm:ss" value="${freeBoard.created_date}"/></p>
-
-            <p>${freeBoard.view_cnt}</p>
-            <hr/>
+            <input type="hidden" id="freeBoardId" value="${freeBoard.id}">
+            <input type="hidden" id="freeBoardPassword" value="${freeBoard.password}">
+            <p class="fw-bold h2">
+                ${freeBoard.title}
+            </p>
+            <p>
+                ${freeBoard.writer} |
+                <javatime:format pattern="yyyy-MM-dd hh:mm:ss" value="${freeBoard.created_date}"/> |
+                조회수 : ${freeBoard.view_cnt}
+            </p>
             <p>${freeBoard.content}</p>
+            <hr>
+            <div class="float-end">
+                <div class="modal fade" id="freeBoardUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel">게시물 수정</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-dark">
+                                비밀번호를 입력하세요.
+                                <input type="password" class="form-control mt-2" id="freeBoardCompareUpdate" placeholder="비밀번호를 입력하세요.">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                <button type="button" class="btn btn-primary" onclick="freeBoardUpdate()">수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="freeBoardDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel2 ">게시물 삭제</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-dark">
+                                비밀번호를 입력하세요.
+                                <input type="password" class="form-control mt-2" id="freeBoardCompareDelete" placeholder="비밀번호를 입력하세요.">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                <button type="button" class="btn btn-primary" onclick="freeBoardDelete()">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="fw-bold fs-5 text-secondary mb-sm-2">댓글</p>
+        <hr/>
+        <div class="mb-3 align-content-sm-start">
+            <c:if test="${freeBoard.comments != null}">
+                <c:forEach var="comment" items="${freeBoard.comments}" varStatus="count">
+                    <div>
+<%--                        <input type="text" id="commentPassword${count.index}" value="${comment.password}">--%>
+                        <p class="fw-bold d-inline">
+                                ${comment.writer} | <javatime:format pattern="yyyy-MM-dd hh:mm:ss" value="${comment.modified_date}"/>
+                        </p>
+
+                        <%-- 댓글 Modal --%>
+                        <div class="d-inline float-end">
+                            <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#commentUpdate">답글</button>
+                            <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#commentDelete">삭제</button>
+                        </div>
+
+                        <div class="modal fade" id="commentUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel3">댓글 수정</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-dark">
+                                        비밀번호를 입력하세요.
+                                        <input type="password" class="form-control mt-2" id="commentCompareUpdate" placeholder="비밀번호를 입력하세요.">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                        <button type="button" class="btn btn-primary" onclick="commentUpdate()">수정</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="commentDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel4">댓글 삭제</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-dark">
+                                        비밀번호를 입력하세요.
+                                        <input type="password" class="form-control mt-2" id="commentCompareDelete" placeholder="비밀번호를 입력하세요.">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                        <button type="button" class="btn btn-primary" onclick="commentDelete()">삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="mt-3">${comment.content}</p>
+                        <textarea type="text" class="w-100" style="display: none"required>${comment.content}</textarea>
+                    </div>
+                    <hr/>
+                </c:forEach>
+            </c:if>
         </div>
 
-        <table class="table table-hover table-dark text-center">
-            <thead>
-            <tr>
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">글쓴이</th>
-                <th scope="col">작성일</th>
-                <th scope="col">조회</th>
-                <th scope="col">추천</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="freeBoard" items="${freeBoardList}">
-                <tr onclick="location.href='/free-board/detail?id=${freeBoard.id}">
-                    <td>${freeBoard.id}</td>
-                    <td>${freeBoard.title}</td>
-                    <td>${freeBoard.writer}</td>
-                    <td>
-                        <javatime:format pattern="yyyy-MM-dd" value="${freeBoard.created_date}"/>
-                    </td>
-                    <td>${freeBoard.view_cnt}</td>
-                </tr>
-            </c:forEach>
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" id="commentWriter" placeholder="닉네임을 입력하세요.">
+                <input type="password" class="form-control" id="commentPassword" placeholder="비밀번호를 입력하세요.">
+            </div>
+            <textarea class="form-control mb-2" placeholder="댓글을 입력하세요." id="commentContent" style="height: 100px;"></textarea>
+            <div class="float-end">
+                <button type="button" class="btn btn-dark btn-outline-light justify-content-end" onclick="commentSave()">등록</button>
+            </div>
+        </form>
 
-            </tbody>
-        </table>
+        <hr/>
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-
-                <!-- 처음으로 -->
-                <c:if test ="${pageNumber != 0}" >
-                    <li class="page-item">
-                        <!-- 첫 페이지 이동 -->
-                        <a class="page-link" href="/free-board/list?page=0" aria-label="first">
-                            <span aria-hidden="true">&laquo;&laquo;</span>
-                        </a>
-                    </li>
-                </c:if>
-                <!-- 이전 -->
-                <c:if test = "${pageNumber != 0}" >
-                    <li class="page-item">
-                        <a class="page-link" href="/free-board/list?page=${pageNumber - 1}" aria-label="before">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                </c:if>
-                <!-- 페이지 그룹 -->
-                <c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
-                    <c:choose>
-                        <c:when test="${pageNumber+1 == i}">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="/free-board/list?&page=${i-1}">${i}</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="page-item">
-                                <a class="page-link" href="/free-board/list?page=${i-1}">${i}</a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <!-- 다음 -->
-                <c:if test = "${pageNumber != (totalPages - 1)}">
-                    <li class="page-item">
-                        <!-- 마지막 페이지 이동 -->
-                        <a class="page-link" href="/free-board/list?page=${pageNumber + 1}" aria-label="after">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </c:if>
-                <!-- 마지막으로 -->
-                <c:if test="${pageNumber != (totalPages - 1)}">
-                    <li class="page-item">
-                        <!-- 마지막 페이지 이동 -->
-                        <a class="page-link" href="/free-board/list?page=${totalPages - 1}" aria-label="last">
-                            <span aria-hidden="true">&raquo;&raquo;</span>
-                        </a>
-                    </li>
-                </c:if>
-            </ul>
-        </nav>
+        <jsp:include page="./freeBoardTable.jsp">
+            <jsp:param name="freeBoardTable" value="freeBoardTable"/>
+        </jsp:include>
 
         <jsp:include page="../../layout/footer.jsp">
             <jsp:param name="footer" value="footer"/>
         </jsp:include>
     </div>
 
+    <script>
+        function freeBoardUpdate() {
+          let freeBoardId = $("#freeBoardId").val();
+          let freeBoardPassword = $("#freeBoardPassword").val();
+          let freeBoardCompareUpdate = $("#freeBoardCompareUpdate").val();
+
+          if(freeBoardPassword != freeBoardCompareUpdate) {
+              alert("비밀번호가 틀립니다.");
+          } else {
+              location.href = "/free-board/update/"+freeBoardId;
+          }
+
+        };
+
+        function freeBoardDelete() {
+            let freeBoardId = $("#freeBoardId").val();
+            let freeBoardPassword = $("#freeBoardPassword").val();
+            let freeBoardCompareDelete = $("#freeBoardCompareDelete").val();
+
+            if(freeBoardPassword != freeBoardCompareDelete) {
+                alert("비밀번호가 틀립니다.");
+            } else {
+                $.ajax({
+                    type : "delete",
+                    url : "/api/v1/free-board/"+freeBoardId,
+                    contentType : "application/json; charset=utf-8",
+                    success : function(res) {
+                        alert("게시물이 삭제 되었습니다.");
+                        location.href = "/free-board/list";
+                    },
+                    error : function(res) {
+                        location.href = "/free-board/list";
+                    }
+
+                });
+            }
+        };
+
+        function commentUpdate() {
+
+        }
+
+        function commentDelete() {
+            let commentComparePassword = $("#commentComparePassword").val();
+            alert(commentComparePassword);
+        }
+    </script>
     </body>
 </html>

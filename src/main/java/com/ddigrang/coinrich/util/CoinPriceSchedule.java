@@ -1,8 +1,8 @@
 package com.ddigrang.coinrich.util;
 
 import com.ddigrang.coinrich.discord.util.Webhook;
-import com.ddigrang.coinrich.dto.BitgetCoin;
-import com.ddigrang.coinrich.service.BitgetApiService;
+import com.ddigrang.coinrich.bitcoin.dto.BitgetCoin;
+import com.ddigrang.coinrich.bitcoin.service.BitgetApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;

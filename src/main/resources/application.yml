@@ -1,24 +1,25 @@
-jda:
-  discord:
-    token: OTkyMzE0OTc4NTMzMTI2MTg2.GnRMRl.WEx8_M1oCzwTzHkyH-MUpKy_l3lozS7zV9XDvI
-
 spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
   jpa:
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         show_sql: true
         format_sql: true
         use_sql_comments: true
-        ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/coinrich
     name: coinrich
     password: coinrich
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 server:
   servlet:
@@ -35,8 +36,10 @@ jasypt:
 
 apikey:
   upbit:
-    accesskey: ENC(9GrDk6LuF8gzjOsJTiwxfa6ofokkmc5DGHVmzCC+ujYsWolHUZ6s2Wpi4zJFxTtIHC9qQ8mohpU=)
-    secretkey: ENC(GZfWK4zWdko3v39TLbsnGjY5+fVDk7D09Qib1CtwgyyQLOKhjee9UsQ7hiPfYOnpf4YabcM2FV4=)
+    accesskey: ENC(KsxbfHI1Ib3kUOxu5JXAJ6OKc+zn82vvc8nysODQQgLnltBKK8u/EAHAO+krEWL2S8AsgLVmsSk=)
+    secretkey: ENC(gxjS9I2IrivdjVtGF9Ro0N5s0vfNi2ano4hUWAUF6YL5xNE3Mvxb2JP68hfVZ62FgUo0Owvfsa0=)
   discord:
-    token: OTkyMzE0OTc4NTMzMTI2MTg2.GnRMRl.WEx8_M1oCzwTzHkyH-MUpKy_l3lozS7zV9XDvI
-    webhook: https://discord.com/api/webhooks/996313509283500052/Wm5lMYrql1eqiQ6-SLhgYQ__k6egts7DWeD6h3EXqPQ9g-rHItYO1jwcOZOz6Cgf1Ccp
+    token: ENC(tal0GN24UKs759U5C8dA6/fljIvBqympxZ6QOs2X5rinxP5zKf+/1ufFCu4wCYmzcWmPG/JMhI0ovu/peP/t/dHrZOt+Isp5QQiUvfcjQzs=)
+  generate:
+    password: ENC(duX9W2JAPJ5YIRGhagCHcg==)
+
