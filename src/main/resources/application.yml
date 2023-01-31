@@ -36,8 +36,8 @@ jasypt:
 
 apikey:
   upbit:
-    accesskey: ENC(KsxbfHI1Ib3kUOxu5JXAJ6OKc+zn82vvc8nysODQQgLnltBKK8u/EAHAO+krEWL2S8AsgLVmsSk=)
-    secretkey: ENC(gxjS9I2IrivdjVtGF9Ro0N5s0vfNi2ano4hUWAUF6YL5xNE3Mvxb2JP68hfVZ62FgUo0Owvfsa0=)
+    accesskey: ENC(U460eLqc0ibTtRTwwHlPItJ99xEHvAhCvVNQVWj3zW/n+7+8HbdkB6vedexf20SIALRckqCZj4Y=)
+    secretkey: ENC(pLYTdnX0HsHmJr2HzOVJd6TOHLy07YrOn1M/zRunz3hhIgM6Fafr9ibG39b28yZ/BaOH+FpIOMc=)
   discord:
     token: ENC(tal0GN24UKs759U5C8dA6/fljIvBqympxZ6QOs2X5rinxP5zKf+/1ufFCu4wCYmzcWmPG/JMhI0ovu/peP/t/dHrZOt+Isp5QQiUvfcjQzs=)
   generate:

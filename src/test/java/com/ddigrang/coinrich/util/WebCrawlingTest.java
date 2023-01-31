@@ -28,8 +28,8 @@ class WebCrawlingTest {
         pbeEnc.setPassword(key);
 
         // 암호화
-        System.out.println(pbeEnc.encrypt("ByfOIVUozvsdK5oxnxKtv7hIpsKpLxikoUcx7WxF"));
-        System.out.println(pbeEnc.encrypt("xzoHXlFdP0A3xqFxqxx8TcbacTPvet1kvczxlAYh"));
+        System.out.println(pbeEnc.encrypt("BZ3od6RJ5IwotlFVGrdr7pfYMn4lyF6QPE3jsaVF"));
+        System.out.println(pbeEnc.encrypt("jYeSPB11friDCUXhRKS47BD6ZTjPMyqy7H2Rq2Vy"));
         System.out.println(pbeEnc.encrypt("eunchan"));
         // 복호화
 //        pbeEnc.decrypt("");
