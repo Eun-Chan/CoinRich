@@ -11,7 +11,7 @@ Coinrich
 
 
 주요기능
-![image-20230130140911455](/Users/EunChan/Library/Application Support/typora-user-images/image-20230130140911455.png)
+<img width="1440" alt="코인리치 메인화면" src="https://user-images.githubusercontent.com/42317561/220030277-bb59c1e4-25ef-4ff5-9fed-3579d72865e8.png">
 1. 현물 포지션 현황
 
 upbit API 를 통해 관리자 현물 포트폴리오 내역(매수가, 현재가, 손익률) 알림
@@ -55,7 +55,9 @@ BTC, ETH 1분봉 현물 거래차트
 6. Discord 연동
 
 Discord & Scheduling 을 연동한 100틱 알람
-![image-20230130172603571](/Users/EunChan/Library/Application Support/typora-user-images/image-20230130172603571.png)
+
+<img width="388" alt="디스코드 100틱 알림" src="https://user-images.githubusercontent.com/42317561/220030490-7e5afede-6c72-405e-86c7-1f416617596b.png">
+
 
 
 Bitget API 의 BTC 현재 가격 & Discord Webhook 를 활용하여 BTC 100 단위 가격 마다 알람
@@ -69,6 +71,8 @@ Youtube Searcher 를 통한 뮤직 봇
 
 
 Youtube Searcher 와 Discord Webhook 를 활용하여 명령어를 통한 음악 재생
+
+<img width="486" alt="디스코드 음악재생" src="https://user-images.githubusercontent.com/42317561/220030791-887bf038-50a4-4815-aacd-60d7045527ae.png">
 
 현재 음악 재생만 가능 다른 기능은 개발 중
 
